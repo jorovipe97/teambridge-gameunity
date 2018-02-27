@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float VelocidadMovimiento;
     private Rigidbody2D rb;
 
+    private bool canMove;
+
     // Use this for initialization
     void Start()
     {
@@ -28,12 +30,16 @@ public class PlayerController : MonoBehaviour
     }
     void LeftRightMovement()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        // Player cannot move in the air
+        if (!canMove)
+            return;
+
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(VelocidadMovimiento, rb.velocity.y);
             rb.transform.localScale = new Vector2(1, 1);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-1 * VelocidadMovimiento, rb.velocity.y);
             rb.transform.localScale = new Vector2(-1, 1);
@@ -54,37 +60,22 @@ public class PlayerController : MonoBehaviour
     }*/
 
 
-    /*
+    
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.transform.tag.Equals("SueloEnMovimiento"))
+        if (c.gameObject.transform.tag.Equals("Suelo"))
         {
-            gameObject.transform.parent = c.gameObject.transform;
-        }
-        else
-        {
-            gameObject.transform.parent = null;
-        }
-
-        TocoPiso = c.gameObject.tag.Equals("Suelo")
-            || c.gameObject.tag.Equals("SueloEnMovimiento")
-            || c.gameObject.tag.Equals("Enemy");
-
-
-        if (c.gameObject.tag.Equals("Respawn"))
-        {
-            if (lives > 0)
-                lives--;
+            canMove = true;
+            
         }
     }
 
     void OnCollisionExit2D(Collision2D c)
     {
-        if (c.gameObject.transform.tag.Equals("Suelo")
-            || c.gameObject.tag.Equals("SueloEnMovimiento")
-            || c.gameObject.tag.Equals("Enemy"))
+        if (c.gameObject.transform.tag.Equals("Suelo"))
         {
-            TocoPiso = false;
+            // Player cannot move in the air
+            canMove = false;
         }
-    }*/
+    }
 }

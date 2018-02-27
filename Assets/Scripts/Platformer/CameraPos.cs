@@ -10,12 +10,11 @@ public class CameraPos : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        newPos = new Vector3(player.position.x, player.position.y, gameObject.transform.position.z);
+        newPos = new Vector3(gameObject.transform.position.x, player.position.y, gameObject.transform.position.z);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        newPos.x = player.position.x;
         newPos.y = player.position.y;
         gameObject.transform.position = newPos;
     }

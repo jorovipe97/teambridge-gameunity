@@ -31,6 +31,7 @@ public class ScoreController : MonoBehaviour {
     /// <returns>True if player has win the game, else otherwise</returns>
     public bool HasPlayerWin()
     {
+
         return ActualScore >= MinScoreForWin;
     }
 	

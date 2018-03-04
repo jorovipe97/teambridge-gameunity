@@ -27,11 +27,13 @@ public class WinOrLostChecker : MonoBehaviour {
             {
                 // Shows the win message
                 winMsg.SetActive(true);
+                loseMsg.SetActive(false);
             }
             else
             {
                 // Shows the lose message
                 loseMsg.SetActive(true);
+                winMsg.SetActive(false);
             }
         }
     }

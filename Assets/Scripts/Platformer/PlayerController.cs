@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     public float VelocidadMovimiento;
@@ -9,11 +10,15 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove;
 
+    private AudioSource audioSrc;
+    public AudioClip AudioOnGetCoin;
+
     // Use this for initialization
     void Start()
     {
         // playerInfo.isAlive = true;
         rb = GetComponent<Rigidbody2D>();
+        audioSrc = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -76,6 +81,16 @@ public class PlayerController : MonoBehaviour
         {
             // Player cannot move in the air
             canMove = false;
+        }
+
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.gameObject.transform.tag.Equals("Coin"))
+        {
+            audioSrc.PlayOneShot(AudioOnGetCoin);
         }
     }
 }

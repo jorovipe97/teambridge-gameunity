@@ -54,6 +54,9 @@ public class CoopWallController : MonoBehaviour {
         col.enabled = false;
 	}
 	
+    /// <summary>
+    /// Toggle wall to make it walkable or not
+    /// </summary>
     [ContextMenu("Toggle Walkable")]
 	public void ToggleWalkable()
     {

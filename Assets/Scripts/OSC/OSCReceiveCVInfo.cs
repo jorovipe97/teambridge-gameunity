@@ -35,7 +35,7 @@ public class OSCReceiveCVInfo : MonoBehaviour {
 
     // Enums can be nested inside a class in c#
     // Enums are by default serialized by unity
-    public enum ActiveRegion : int
+    public enum ActiveRegion : sbyte
     {
         nothing = -1,
         left = 0,
